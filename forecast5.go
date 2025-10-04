@@ -17,8 +17,9 @@ func (dt *DtTxt) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-func (t *DtTxt) MarshalJSON() ([]byte, error) {
-	return json.Marshal(t)
+func (dt DtTxt) MarshalJSON() ([]byte, error) {
+	formatted := dt.Format("2006-01-02 15:04:05")
+	return []byte(`"` + formatted + `"`), nil
 }
 
 // Forecast5WeatherList holds specific query data
